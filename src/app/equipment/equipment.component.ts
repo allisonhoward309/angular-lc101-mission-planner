@@ -32,4 +32,12 @@ export class EquipmentComponent implements OnInit {
       this.cargoMass += equipment['mass'];
       return this.maximumAllowedMass-this.cargoMass <= 200;
    }
+   removeItem (equipment: object[]): void {
+    this.cargoHold.splice(this.cargoHold.indexOf(equipment),1);
+    this.cargoMass -= equipment['mass'];
+   }
+   clear() {
+     this.cargoHold = [];
+     this.cargoMass = 0;
+   }
 }

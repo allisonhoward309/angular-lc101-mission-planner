@@ -10,6 +10,7 @@ export class CrewComponent implements OnInit {
   inCrew: boolean = false;
   crew: object[] = [];
 
+
   candidates: object[] = [
     {name: "Sally Ride", photo: 'https://handlers.education.launchcode.org/static/images/sally-ride.jpg'},
     {name: "Mae Jemison", photo: 'https://handlers.education.launchcode.org/static/images/mae-jemison.jpg'},
@@ -26,12 +27,15 @@ export class CrewComponent implements OnInit {
 
   // Code the 'addCrewMember' function here:
 addCrewMember (candidate: object[]) {
-  if (this.crew.includes(candidate) === false && this.crew.length<3) {
-    this.crew.push(candidate);
+  if (this.crew.includes(candidate)){
     this.inCrew = true;
-  } else if(this.crew.includes(candidate) === true) {
-    this.crew.splice(this.crew.indexOf(candidate),1);
+  } else {
     this.inCrew = false;
+  }
+  if (!this.inCrew && this.crew.length<3) {
+    this.crew.push(candidate);
+  } else if(this.inCrew) {
+    this.crew.splice(this.crew.indexOf(candidate),1);
   }
 }
 }
